@@ -62,17 +62,20 @@ Anderson Bispo
 
 <!-- _paginate: false -->
 
-![bg right:40%](https://thecloudgirl.dev/images/CloudBuild.jpg)
+![bg right:40%](./images/perfil.jpeg)
 
 #### 🇧🇷 Anderson Bispo
 
 * Servidor Público do Tribunal de Justiça da Bahia
 * ConsTrutor 4Linux
-* Especialista em Gestão e Governança de TIC
-* MBA em BI e DataWarehouse
 * >21 de experiência em TI 💻
+* Graduado em SI
+* Duas pós graduações em TI
+* Ciclista Amador 🚲
+* Violonista Amador 
 
 **Principais Certificações:**
+* 
 * Google Cloud Certified Professional Cloud Architect
 * AWS Solutions Architect Associate
 * Oracle Cloud Infrastructure Certified Architect Professional
