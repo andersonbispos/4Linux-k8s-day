@@ -68,11 +68,9 @@ Anderson Bispo
 
 * Servidor Público do Tribunal de Justiça da Bahia
 * ConsTrutor 4Linux
-* >21 de experiência em TI 💻
-* Graduado em SI
-* Duas pós graduações em TI
-* Ciclista Amador 🚲
-* Violonista Amador 
+* 21 de experiência em TI 💻
+* Graduado em SI 💻
+* Especialista em Gestão de TI 💻
 
 **Principais Certificações:**
 * 
