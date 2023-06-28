@@ -66,10 +66,11 @@ Anderson Bispo
 
 #### 🇧🇷 Anderson Bispo
 
-* ConsTrutor 4Linux
 * Servidor Público do Tribunal de Justiça da Bahia
-* MBA em BI e DataWarehouse
+* ConsTrutor 4Linux
 * Especialista em Gestão e Governança de TIC
+* MBA em BI e DataWarehouse
+* >21 de experiência em TI 💻
 
 **Principais Certificações:**
 * Google Cloud Certified Professional Cloud Architect
