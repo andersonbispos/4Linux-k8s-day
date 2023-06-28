@@ -10,6 +10,10 @@ https://github.com/marp-team/marp
 https://marp.app/#get-started
 https://www.markdownguide.org/
 
+As ilustrações vieram daqui:
+
+https://thecloudgirl.dev/sketchnote.html
+
 Dentro do diretório "slides" existe um arquivo chamado "README.pdf" já estilizado.
 Você pode clicar aqui para realizar o download do arquivo diretamente, caso prefira.
 O material foi criado por mim, Samuel Gonçalves. Caso queira entrar em contato, é só clicar aqui.
