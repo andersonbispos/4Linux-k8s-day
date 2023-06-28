@@ -73,7 +73,7 @@ Anderson Bispo
 * Especialista em Gestão de TI 💻
 
 **Principais Certificações:**
-* 
+
 * Google Cloud Certified Professional Cloud Architect
 * AWS Solutions Architect Associate
 * Oracle Cloud Infrastructure Certified Architect Professional
@@ -82,7 +82,7 @@ Anderson Bispo
 * Oracle Database 11g Certified Professional
 * RHCE / LPIC3 / Cisco CCNA
 
-* Contato: [https://www.linkedin.com/in/andersonbispos/](https://www.linkedin.com/in/andersonbispos/)
+Contato: [https://www.linkedin.com/in/andersonbispos/](https://www.linkedin.com/in/andersonbispos/)
 
 ---
 
