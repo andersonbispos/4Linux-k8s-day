@@ -6,11 +6,11 @@
 
 Você pode usar um projeto existente do Google Cloud Platform para este tutorial ou pode [criar um projeto](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project).
 
-Open the <walkthrough-editor-spotlight spotlightId="menu-terminal">terminal</walkthrough-editor-spotlight> and follow the steps below:
+Abra o <walkthrough-editor-spotlight spotlightId="menu-terminal">terminal</walkthrough-editor-spotlight> e siga os passos abaixo:
 
-### 1. Set environment variables
+### 1. Configure as variáveis de ambiente
 
-In the terminal, set your `PROJECT_ID` and `COMPUTE_ZONE` variables if you don't already have them configured.
+No terminal, defina duas variáveis `PROJECT_ID` e `COMPUTE_ZONE`, caso ainda não as tenha configurado.
 
 ```bash
 PROJECT_ID=meu-projeto
@@ -20,7 +20,7 @@ Replace `meu-projeto` with your [project id](https://support.google.com/cloud/an
 ```bash
 COMPUTE_ZONE=soutamerica-east1-c
 ```
-Replace COMPUTE_ZONE with your [compute zone](https://cloud.google.com/compute/docs/regions-zones#available), such as `us-west1-a`.
+Replace COMPUTE_ZONE with your [compute zone](https://cloud.google.com/compute/docs/regions-zones#available), such as `soutamerica-east1-c`.
 
 ### 2. Defina o projeto e a zona padrão
 ```bash
