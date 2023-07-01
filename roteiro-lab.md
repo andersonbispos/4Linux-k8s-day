@@ -1,4 +1,6 @@
-# #K8S Day 4Linux - Kubernetes com piloto automático na Google Cloud
+# Kubernetes Day 4Linux
+
+## Kubernetes com piloto automático na Google Cloud
 
 ## Configurando o Projeto
 
