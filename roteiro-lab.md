@@ -15,12 +15,12 @@ No terminal, defina duas variáveis `PROJECT_ID` e `COMPUTE_ZONE`, caso ainda n�
 ```bash
 PROJECT_ID=meu-projeto
 ```
-Replace `meu-projeto` with your [project id](https://support.google.com/cloud/answer/6158840).
+Substitua `meu-projeto` pelo seu [project id](https://support.google.com/cloud/answer/6158840).
 
 ```bash
 COMPUTE_ZONE=soutamerica-east1-c
 ```
-Replace COMPUTE_ZONE with your [compute zone](https://cloud.google.com/compute/docs/regions-zones#available), such as `soutamerica-east1-c`.
+Substitua COMPUTE_ZONE pela zona onde você quer provisinar os recursos [compute zone](https://cloud.google.com/compute/docs/regions-zones#available), por exemplo: `soutamerica-east1-c`.
 
 ### 2. Defina o projeto e a zona padrão
 ```bash
@@ -55,7 +55,7 @@ GKE offers two [modes of operation](https://cloud.google.com/kubernetes-engine/d
 Execute o comando abaixo em seu terminal para criar um cluster `4linux-cluster`:
 
 ```
-gcloud container clusters create-auto 4linux-cluster
+gcloud container clusters create-auto 4linux-cluster --region soutamerica-east1
 ```
 
 Pode levar vários minutos para concluir a criação do cluster.
