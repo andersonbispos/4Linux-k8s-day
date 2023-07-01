@@ -45,10 +45,13 @@ gcloud services enable container.googleapis.com
 Em seguida, vamos criar nosso cluster do GKE Auto Pilot.
 
 
-## Create a GKE cluster
-A cluster consists of at least one cluster control plane machine and multiple worker machines called nodes. Nodes are [Compute Engine virtual machine (VM) instances](https://cloud.google.com/compute/docs/instances) that run the Kubernetes processes necessary to make them part of the cluster.
+## Criando um Cluster GKE Auto Pilot
 
-GKE offers two [modes of operation](https://cloud.google.com/kubernetes-engine/docs/concepts/types-of-clusters#modes) for clusters: [Standard](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture) and [Autopilot](https://cloud.google.com/kubernetes-engine/docs/concepts/autopilot-architecture). For this tutorial, we'll use Standard mode.
+Um cluster consiste em pelo menos uma máquina de plano de controle de cluster e várias máquinas de trabalho chamadas nós. Os nós são [instâncias de máquina virtual (VM) do Compute Engine](https://cloud.google.com/compute/docs/instances) que executam os processos do Kubernetes necessários para torná-los parte do cluster.
+
+O Autopilot do GKE é um modo de operação no GKE em que o Google gerencia a configuração do cluster, incluindo nós, escalonamento, segurança e outras configurações prévias. Os clusters do Autopilot são otimizados para executar a maioria das cargas de trabalho de produção e provisionar recursos de computação com base nos manifestos do Kubernetes. A configuração simplificada segue as práticas recomendadas e recomendações do GKE para configuração, escalonabilidade e segurança do cluster e da carga de trabalho.
+
+Você só paga pela CPU, pela memória e pelo armazenamento que as cargas de trabalho solicitarem enquanto são executadas no Autopilot do GKE Você não é cobrado pela capacidade não utilizada nos nós, porque o GKE gerencia os nós.
 
 ### 1. Criar um cluster GKE AutoPilot
 
