@@ -2,7 +2,7 @@
 
 ## Configurando o Projeto
 
-Você pode usar um projeto existente do Google Cloud Platform para este tutorial ou pode [create a project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project).
+Você pode usar um projeto existente do Google Cloud Platform para este tutorial ou pode [criar um projeto](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project).
 
 Open the <walkthrough-editor-spotlight spotlightId="menu-terminal">terminal</walkthrough-editor-spotlight> and follow the steps below:
 
@@ -40,7 +40,7 @@ gcloud services enable container.googleapis.com
 
 ### 
 
-Next, you'll create a GKE cluster.
+Em seguida, vamos criar nosso cluster do GKE Auto Pilot.
 
 
 ## Create a GKE cluster
