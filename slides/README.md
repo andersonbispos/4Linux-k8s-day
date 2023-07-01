@@ -67,6 +67,61 @@ Contato: [https://www.linkedin.com/in/andersonbispos/](https://www.linkedin.com/
 
 ---
 
-![bg right:40%](https://thecloudgirl.dev/images/CloudBuild.jpg)
+<style scoped>
+  h4 {
+    font-size: 35pt;
+    list-style-type: circle;
+    font-weight: 900;
+    color: #10b5bf
+  }
+  p {
+    font-size: 13pt;
+  }
+  {
+   font-size: 28px;
+  }
+  img {
+    width: 800px;
+  }
+</style>
+
+![CI/CD](./images/ci-cd.jpeg)
+
+---
+
+<style scoped>
+  h4 {
+    font-size: 35pt;
+    list-style-type: circle;
+    font-weight: 900;
+    color: #10b5bf
+  }
+  p {
+    font-size: 20pt;
+    text-align: left;
+  }
+  {
+   font-size: 25px;
+   text-align: left;
+  }
+</style>
+
+![bg left:40% 70%](./images/ci-cd.jpeg)
+
+#### DevOps Cloud Native na Google Cloud
+
+* Code (Cloud Source Repository)
+* Build (Cloud Build)
+* Release (Artifact Registy)
+* Deploy (Cloud Build)
+* Monitor (Cloud Operations)
+* Operate
+    * VMs (Compute Engine + Docker)
+    * Google Kubernetes Engine (GKE) 
+    * Server Less (App Engine/Cloud Run)
+---
+
+
+![bg right:100%](https://thecloudgirl.dev/images/CloudBuild.jpg)
 
 ---
