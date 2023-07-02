@@ -38,6 +38,7 @@ gcloud config set accessibility/screen_reader False
 
 ```bash
 gcloud services enable container.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
 ```
 
 ### 
@@ -55,39 +56,73 @@ Você só paga pela CPU, pela memória e pelo armazenamento que as cargas de tra
 
 ### 1. Criar um cluster GKE AutoPilot
 
-Execute o comando abaixo em seu terminal para criar um cluster `4linux-cluster`:
+Execute o comando abaixo em seu terminal para criar um cluster `k8s-day-cluster`:
 
 ```
-gcloud container clusters create-auto 4linux-cluster --region soutamerica-east1
+gcloud container clusters create-auto --region=southamerica-east1 k8s-day-cluster
 ```
 
 Pode levar vários minutos para concluir a criação do cluster.
 
-
-### 2. Get authentication credentials
-
-After creating your cluster, you need to get authentication credentials to interact with the cluster.
+Você pode usar o comando abaixo para listar os clusters ativos na sua conta:
 
 ```
-gcloud container clusters get-credentials hello-cluster
+gcloud container clusters list
 ```
 
-This command configures `kubectl` to use the cluster you created.
+
+### 2. Obter as credenciais de autenticação
+
+Depois da criação do cluster, você precisa obter credenciais de autenticação para interagir com o cluster.
+
+```
+gcloud container clusters get-credentials k8s-day-cluster
+```
+
+Este comando configura `kubectl` para usar o cluster que você criou.
 
 
-Next, let's deploy an app to the cluster.
+Em seguida, vamos implantar um aplicativo no cluster.
 
 
+```
+kubectl create namespace 4linux
+```
+
+```
+kubectl create namespace 4linux
+```
+
+gcloud artifacts locations list
 
 
+gcloud artifacts repositories create repo-4linux \
+   --repository-format=docker \
+   --location=southamerica-east1 \
+   --description="Docker repository"
 
 
-gcloud config set accessibility/screen_reader False
+git clone https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
 
-gcloud config set compute/zone us-central1-a
+cd kubernetes-engine-samples/hello-app
+
 
 gcloud services enable sourcerepo.googleapis.com
 
 gcloud services enable artifactregistry.googleapis.com
 
 gcloud services enable container.googleapis.com
+
+
+
+https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app#create_a_repository
+
+https://cloud.google.com/kubernetes-engine/docs/samples
+
+https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
+
+https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/gke-stateful-mysql
+
+https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app
+
+https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook#objectives
