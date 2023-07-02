@@ -1,0 +1,7 @@
+{
+    "name": "googlecloud/php-redis",
+    "license": "Apache2",
+    "require": {
+        "predis/predis" : "^2.0.0"
+    }
+}
