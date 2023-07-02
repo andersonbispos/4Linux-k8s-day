@@ -64,6 +64,8 @@ gcloud container clusters create-auto --region=southamerica-east1 k8s-day-cluste
 
 Pode levar vários minutos para concluir a criação do cluster.
 
+#### 1.1. Listar clusters existentes no projeto
+
 Você pode usar o comando abaixo para listar os clusters ativos na sua conta:
 
 ```
@@ -84,6 +86,16 @@ Este comando configura `kubectl` para usar o cluster que você criou.
 
 Em seguida, vamos implantar um aplicativo no cluster.
 
+
+## Criar um livro de visitas com Redis e PHP
+
+O Google Cloud disponibiliza vários exemplos de aplicações e cargas de trabalho diversas que podem ser utilizadas para realizar testes de aplicação no GKE.
+
+Para esse tutorial vamos utilizar o tutorial disponibilizado em [Tutorial GKE - Redis/PHP](https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook) com algumas adaptações.
+
+Além de disponibilizar o aplicativo e validarmos que o Auto Pilot vai realizar o scaling dos cluster a medida que nossa aplicação damandar mais recursos, vamos ver também como criar e testar um objeto HPA (Horizontal Pod AutoScaling) no GKE que escala automaticamente a quantidade de pods necessária para atender a nossa aplicação a depender de parâmetros como CPU e memória. 
+
+Mais exemplos de cargas de trabalho para testes no GKE podem ser encontrados [aqui](https://cloud.google.com/kubernetes-engine/docs/samples) e [aqui](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples)
 
 ```
 kubectl create namespace 4linux
@@ -114,15 +126,13 @@ gcloud services enable artifactregistry.googleapis.com
 gcloud services enable container.googleapis.com
 
 
+kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://frontend; done"
+
+kubectl get hpa cpu --watch
+
 
 https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app#create_a_repository
-
-https://cloud.google.com/kubernetes-engine/docs/samples
-
-https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
 
 https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/gke-stateful-mysql
 
 https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app
-
-https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook#objectives
