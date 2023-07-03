@@ -140,8 +140,6 @@ cd 4Linux-k8s-day; git checkout HEAD tutorial/manifests
 
 Use o arquivo de manifesto denominado tutorial/manifests/redis-leader-deployment.yaml para implantar o líder do Redis. Esse arquivo de manifesto especifica uma implantação do Kubernetes que executa um pod líder do Redis de réplica única.
 
-**tutorial/manifests/redis-leader-deployment.yaml:**
-
 Execute o seguinte comando para implantar o líder do Redis:
 
 ```
