@@ -175,7 +175,7 @@ Saída:
 
 #### Criar o serviço de líder do Redis
 
-
+### Configurar seguidores do Redis
 
 ```
 kubectl create namespace 4linux
