@@ -130,9 +130,15 @@ Primeiro, clone os manifestos de amostra:
 
 ```
 git clone -n https://github.com/andersonbispos/4Linux-k8s-day
+```
+
+Entre no repositorio e atualize baixando apenas os arquivos necessários:
+
+```
 cd 4linux-k8s-day
 git checkout HEAD tutorial/manifests
 ```
+
 
 
 ```
