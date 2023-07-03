@@ -29,6 +29,8 @@ Para implantar e executar o aplicativo de livro de visitas no GKE Auto Pilot:
 1. Amplie o front-end da Web do livro de visitas.
 1. Configure o HPA para o front-end do livro de visitas.
 
+Abaixo um exemplo da arquitetura do nosso exemplo:
+
 ![Diagrama Projeto](./images/guestbook_diagram.svg)
 
 ## Configurando o Projeto
