@@ -112,7 +112,7 @@ Este comando configura `kubectl` para usar o cluster que você criou.
 
 Em seguida, vamos seguir para a implantação do aplicativo no cluster.
 
-## Criar um livro de visitas com Redis e PHP
+## Criando um livro de visitas com Redis e PHP
 
 Para esse tutorial, vamos implantar primeiro um cluster redis com dois seguidores e em seguida implantar uma aplicação PHP que fará uso desse cluster. 
 
