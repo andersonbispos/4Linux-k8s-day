@@ -116,7 +116,7 @@ Em seguida, vamos seguir para a implantação do aplicativo no cluster.
 
 Para esse tutorial, vamos implantar primeiro um cluster redis com dois seguidores e em seguida implantar uma aplicação PHP que fará uso desse cluster. 
 
-Além de disponibilizar o aplicativo e validarmos que o Auto Pilot vai realizar o scaling dos cluster a medida que nossa aplicação damandar mais recursos, vamos ver também como criar e testar um objeto HPA (Horizontal Pod AutoScaling) no GKE que escala automaticamente a quantidade de pods necessária para atender a nossa aplicação a depender de parâmetros como CPU e memória.
+Além de disponibilizar o aplicativo e validar o funcionamento do cluster **Auto Scaling** a medida que nossa aplicação damandar mais recursos. Vamos ver também como criar e testar um objeto HPA (Horizontal Pod AutoScaling) no GKE que escala automaticamente a quantidade de pods necessária para atender a nossa aplicação a depender de parâmetros como CPU e memória.
 
 
 ### Criar um livro de visitas com Redis e PHP
