@@ -135,8 +135,47 @@ git clone -n https://github.com/andersonbispos/4Linux-k8s-day
 Entre no repositorio e atualize baixando apenas os arquivos necessários:
 
 ```
-cd 4linux-k8s-day; git checkout HEAD tutorial/manifests
+cd 4Linux-k8s-day; git checkout HEAD tutorial/manifests
 ```
+
+Use o arquivo de manifesto denominado tutorial/manifests/redis-leader-deployment.yaml para implantar o líder do Redis. Esse arquivo de manifesto especifica uma implantação do Kubernetes que executa um pod líder do Redis de réplica única.
+
+**tutorial/manifests/redis-leader-deployment.yaml:**
+
+Execute o seguinte comando para implantar o líder do Redis:
+
+```
+kubectl apply -f tutorial/manifests/redis-leader-deployment.yaml
+```
+
+Verifique se o pod líder do Redis está em execução:
+
+```
+kubectl get pods
+```
+
+Saída:
+
+```
+NAME                            READY   STATUS    RESTARTS   AGE
+redis-leader-7ccdb7cc89-vmm88   1/1     Running   0          9s
+```
+
+Execute o seguinte comando para ver os registros do pod do líder do Redis:
+
+```
+kubectl logs deployment/redis-leader
+```
+
+Saída:
+
+```
+...
+1:M 03 Jul 2023 17:07:49.689 * Ready to accept connections
+...
+```
+
+#### Criar o serviço de líder do Redis
 
 
 
