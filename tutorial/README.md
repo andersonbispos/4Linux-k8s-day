@@ -3,6 +3,7 @@
 1. [Kubernetes com piloto automático na Google Cloud](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Kubernetes-com-piloto-automático-na-Google-Cloud "Kubernetes com piloto automático na Google Cloud")
 1. [Configurando o Projeto](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurando-o-Projeto "Configurando o Projeto")
 1. [Implantando o livro de visitas com Redis e PHP](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Implantando-o-livro-de-visitas-com-Redis-e-PHP "Implantando o livro de visitas com Redis e PHP")
+1. [Limpando o ambiente](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Limpando-o-Ambiente "Limpando o ambiente")
 
 ## Kubernetes com piloto automático na Google Cloud
 
@@ -176,6 +177,22 @@ Saída:
 #### Criar o serviço de líder do Redis
 
 ### Configurar seguidores do Redis
+
+#### Criar o serviço de seguidor do Redis
+
+### Configurar o front-end da Web do livro de visitas
+
+#### Expor o front-end em um endereço IP externo
+
+### Testar o livro de visitas
+
+### Escalonar verticalmente o front-end da Web
+
+### Criar uma configuração de HPA para o front-end WEB
+
+#### Testar o HPA
+
+## Limpando o ambiente
 
 ```
 kubectl create namespace 4linux
