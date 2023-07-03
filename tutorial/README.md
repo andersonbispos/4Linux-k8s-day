@@ -118,9 +118,11 @@ Para esse tutorial, vamos implantar primeiro um cluster redis com dois seguidore
 
 Além de disponibilizar o aplicativo e validar o funcionamento do cluster **Auto Scaling** a medida que nossa aplicação damandar mais recursos. Vamos ver também como criar e testar um objeto HPA (Horizontal Pod AutoScaling) no GKE que escala automaticamente a quantidade de pods necessária para atender a nossa aplicação a depender de parâmetros como CPU e memória.
 
+### Configurar o líder do Redis Redis
 
-### Criar um livro de visitas com Redis e PHP
+No aplicativo do livro de visitas, o Redis é usado para armazenar os dados. O aplicativo grava os dados em uma instância líder do Redis e lê os dados de várias instâncias de seguidores do Redis. A primeira etapa é implantar um líder do Redis.
 
+Primeiro, clone os manifestos de amostra:
 
 
 
