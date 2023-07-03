@@ -128,7 +128,11 @@ No aplicativo do livro de visitas, o Redis é usado para armazenar os dados. O a
 
 Primeiro, clone os manifestos de amostra:
 
-
+```
+git clone -n https://github.com/andersonbispos/4Linux-k8s-day
+cd 4linux-k8s-day
+git checkout HEAD tutorial/manifests
+```
 
 
 ```
