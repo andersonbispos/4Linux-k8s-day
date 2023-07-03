@@ -4,7 +4,7 @@
 1. [Configurando o Projeto](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurando-o-Projeto "Configurando o Projeto")
 1. [Implantando o livro de visitas com Redis e PHP](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Implantando-o-livro-de-visitas-com-Redis-e-PHP "Implantando o livro de visitas com Redis e PHP")
    1. [Configurar o líder do Redis Redis](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurar-o-líder-do-Redis-Redis "Implantando o livro de visitas com Redis e PHP")
-   1. Configurar seguidores do Redis
+   1. [Configurar seguidores do Redis](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurar-seguidores-do-Redis "Configurar seguidores do Redis")
    1. Configurar o front-end da Web do livro de visitas
    1. Testar o livro de visitas
    1. Criar uma configuração de HPA para o front-end WEB
@@ -181,7 +181,59 @@ Saída:
 
 #### Criar o serviço de líder do Redis
 
+O aplicativo do livro de visitas precisa se comunicar com o líder do Redis para gravar os dados. É possível criar um serviço para redirecionar o tráfego ao pod do líder do Redis.
+
+Um serviço é uma abstração do Kubernetes que define um conjunto lógico de pods e uma política para acessar os pods. O serviço é efetivamente um balanceador de carga nomeado que direciona o tráfego para um ou mais pods. Ao configurar um serviço, você descreve para quais pods direcionar com base nos rótulos dos pods.
+
+O arquivo de manifesto tutorial/manifests/redis-leader-service.yaml que descreve um recurso de serviço para o líder do Redis:
+
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  labels:
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis
+    role: leader
+    tier: backend
+```
+
+Esse arquivo de manifesto cria um serviço chamado redis-leader com um conjunto de seletores de rótulos `labels`. Esses labels são iguais ao conjunto implantado na etapa anterior. Portanto, esse serviço faz o roteamento do tráfego de rede para o pod do líder do Redis criado em uma etapa anterior.
+
+A seção ports do manifesto apresenta um único mapeamento de porta. Nesse caso, o serviço roteia o tráfego em port: 6379 para targetPort: 6379 dos contêineres que correspondem aos rótulos selector especificados. Observe que o containerPort usado no deployment precisa corresponder ao targetPort para rotear o tráfego para a implantação.
+
+Crie o serviço líder do Redis executando:
+
+```
+kubectl apply -f tutorial/manifests/redis-leader-service.yaml
+```
+
+Confirme que o serviço foi criado:
+
+```
+kubectl get svc
+```
+
+Saída:
+
+```
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes     ClusterIP   10.31.128.1     <none>        443/TCP    32h
+redis-leader   ClusterIP   10.31.130.223   <none>        6379/TCP   82s
+```
+
+
 ### Configurar seguidores do Redis
+
+
 
 #### Criar o serviço de seguidor do Redis
 
