@@ -65,14 +65,12 @@ gcloud config set compute/zone $COMPUTE_ZONE
 gcloud config set accessibility/screen_reader False
 ```
 
-### 4. Habilite a API do GKE
+### 4. Habilite as APIs necessárias:
 
 ```bash
 gcloud services enable container.googleapis.com
 gcloud services enable artifactregistry.googleapis.com
 ```
-
-### 
 
 Em seguida, vamos criar nosso cluster do GKE Auto Pilot.
 
