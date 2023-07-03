@@ -1,5 +1,10 @@
 # Kubernetes Day 4Linux
 
+[Kubernetes com piloto automático na Google Cloud](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Kubernetes com piloto automático na Google Cloud "Kubernetes com piloto automático na Google Cloud")
+
+
+https://github.com/andersonbispos/4Linux-k8s-day/tree/main/tutorial
+
 ## Kubernetes com piloto automático na Google Cloud
 
 O Autopilot do GKE é um modo de operação no GKE em que o Google gerencia a configuração do cluster, incluindo nós, escalonamento, segurança e outras configurações prévias. Os clusters do Autopilot são otimizados para executar a maioria das cargas de trabalho de produção e provisionar recursos de computação com base nos manifestos do Kubernetes. A configuração simplificada segue as práticas recomendadas e recomendações do GKE para configuração, escalonabilidade e segurança do cluster e da carga de trabalho.
