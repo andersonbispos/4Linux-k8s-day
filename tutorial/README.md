@@ -1,6 +1,8 @@
 # Kubernetes Day 4Linux
 
 1. [Kubernetes com piloto automático na Google Cloud](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Kubernetes-com-piloto-automático-na-Google-Cloud "Kubernetes com piloto automático na Google Cloud")
+1. [Configurando o Projeto](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurando-o-Projeto "Configurando o Projeto")
+1. [Implantando o livro de visitas com Redis e PHP](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Implantando-o-livro-de-visitas-com-Redis-e-PHP "Implantando o livro de visitas com Redis e PHP")
 
 
 https://github.com/andersonbispos/4Linux-k8s-day/tree/main/tutorial
@@ -117,7 +119,7 @@ Este comando configura `kubectl` para usar o cluster que você criou.
 
 Em seguida, vamos seguir para a implantação do aplicativo no cluster.
 
-## Criando um livro de visitas com Redis e PHP
+## Implantando o livro de visitas com Redis e PHP
 
 Para esse tutorial, vamos implantar primeiro um cluster redis com dois seguidores e em seguida implantar uma aplicação PHP que fará uso desse cluster. 
 
