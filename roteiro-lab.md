@@ -97,6 +97,33 @@ Além de disponibilizar o aplicativo e validarmos que o Auto Pilot vai realizar 
 
 Mais exemplos de cargas de trabalho para testes no GKE podem ser encontrados [aqui](https://cloud.google.com/kubernetes-engine/docs/samples) e [aqui](https://github.com/GoogleCloudPlatform/kubernetes-engine-samples)
 
+### Criar um livro de visitas com Redis e PHP
+
+Neste tutorial, mostramos como criar um aplicativo da Web de várias camadas usando o Google Kubernetes Engine (GKE, na sigla em inglês). O aplicativo do tutorial é um livro de visitas, em que os visitantes digitam texto em um registro e veem as últimas entradas registradas.
+
+Para esse tutorial, vamos implantar primeiro um cluster redis com dois seguidores e em seguida implantar uma aplicação PHP que fará uso desse cluster.
+
+O exemplo destaca vários conceitos importantes do GKE:
+
+- [Cluster AutoScaling](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-autoscaler?hl=pt-br) e [Horizontal Pod Autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/)
+- [Configuração Declarativa](https://kubernetes.io/docs/tasks/manage-kubernetes-objects/declarative-config) usando arquivos de manifestos YAML.
+- [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment), que são recursos do Kubernetes que determinam a configuração de um conjunto de pods replicados (links em inglês)
+- [Services](https://kubernetes.io/docs/concepts/services-networking/service), para criar balanceadores de cargas internos e externos em um conjunto de pods.
+
+#### Objetivos
+
+Objetivos:
+
+Para implantar e executar o aplicativo de livro de visitas no GKE Auto Pilot:
+
+1. Criar um cluster GKE Auto Pilot
+1. Configurar o líder do Redis
+1. Configurar dois seguidores do Redis
+1. Configurar o front-end da Web do livro de visitas
+1. Acesse o site do livro de visitas.
+1. Amplie o front-end da Web do livro de visitas.
+1. Configure o HPA para o front-end do livro de visitas.
+
 ```
 kubectl create namespace 4linux
 ```
