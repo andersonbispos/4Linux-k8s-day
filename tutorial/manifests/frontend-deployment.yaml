@@ -19,7 +19,7 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
         app: guestbook
