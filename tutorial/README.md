@@ -340,7 +340,26 @@ Quando o serviço frontend é criado, o GKE cria um balanceador de carga e um en
 
 ### Testar o livro de visitas
 
+Para acessar o serviço do livro de visitas, encontre o IP externo do serviço que você configurou executando o comando:
 
+```
+kubectl get service frontend
+```
+
+Saída:
+
+```
+NAME       TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)        AGE
+frontend   LoadBalancer   10.31.130.97   34.95.192.175   80:32189/TCP   3m16s
+```
+
+> Observação: a coluna EXTERNAL-IP pode ser exibida como <pending> enquanto o balanceador de carga está sendo criado. Pode levar alguns minutos para que o balanceador de carga seja criado.
+
+Copie o endereço IP da coluna EXTERNAL-IP e carregue a página no navegador.
+
+![guestbook](./images/guestbook-test.png)
+
+Tente adicionar algumas entradas do livro de visitas digitando uma mensagem e clicando em Enviar. A mensagem que você digitou aparece no front-end. Ela indica que os dados foram adicionados ao Redis com sucesso por meio dos serviços criados anteriormente.
 
 #### Escalonar verticalmente o front-end da Web
 
