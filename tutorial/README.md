@@ -309,7 +309,7 @@ Para criar a implantação front-end da Web do livro de visitas, execute:
 kubectl apply -f tutorial/manifests/frontend-deployment.yaml
 ```
 
-Consulte a lista de pods em execução filtrando pelos `labels` que identificam o front-end da Web para verificar se 5 réplicas estão em execução:
+Consulte a lista de pods em execução filtrando pelos `labels` que identificam o pods front-end da Web:
 
 ```
 kubectl get pods -l app=guestbook -l tier=frontend
@@ -317,7 +317,9 @@ kubectl get pods -l app=guestbook -l tier=frontend
 
 Saída:
 
+```
 
+```
 
 
 #### Expor o front-end em um endereço IP externo
@@ -327,6 +329,8 @@ Saída:
 ### Testar o livro de visitas
 
 #### Escalonar verticalmente o front-end da Web
+
+Verifique que alguns pods do frontend estão com o status `Pending`, ao verificar os eventos em um dos pods com status Pending é possível entender que o cluster não tem mais recursos disponíveis para iniciar os pods adicionais e desse modo o cluster iniciou automaticamente o scaling do cluster
 
 ### Criar uma configuração de HPA para o front-end WEB
 
