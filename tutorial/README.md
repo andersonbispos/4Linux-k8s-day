@@ -318,15 +318,29 @@ kubectl get pods -l app=guestbook -l tier=frontend
 Saída:
 
 ```
-
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-74bd844ddb-8b74z   1/1     Running   0          25s
 ```
 
+O arquivo de manifesto especifica a variável de ambiente GET_HOSTS_FROM=dns. Quando você fornece a configuração para o aplicativo de front-end da Web do livro de visitas, o aplicativo de front-end usa os nomes de host redis-follower e redis-leader para realizar uma busca DNS. A busca DNS encontra os endereços IP dos respectivos serviços criados nas etapas anteriores. Esse conceito é chamado de descoberta de serviços DNS.
 
 #### Expor o front-end em um endereço IP externo
 
+É necessário que o serviço front-end da Web do livro de visitas seja visível externamente. Ou seja, você quer que um cliente possa solicitar o Serviço de fora do Cluster do GKE. Para isso, é possível especificar type: LoadBalancer ou type: NodePort na configuração do serviço, dependendo dos seus requisitos.
 
+O Google Kubernetes Engine (GKE) cria e gerencia os balanceadores de carga do Google Cloud quando você aplica um manifesto que cria um serviço com o type: LoadBalancer atribuindo automaticamente ao serviço de Load Balancer um ip publico externo válido. Neste exemplo, vamos usar o type: LoadBalancer.
+
+Para criar o Serviço, execute este comando:
+
+```
+kubectl apply -f tutorial/manifests/frontend-service.yaml
+```
+
+Quando o serviço frontend é criado, o GKE cria um balanceador de carga e um endereço IP externo. Observe que esses recursos estão sujeitos à cobrança. A declaração de porta na seção ports especifica port: 80 e targetPort não é especificado. Quando você omite a propriedade targetPort, o padrão é o valor do campo port. Nesse caso, o serviço encaminha o tráfego externo da porta 80 para a porta 80 dos contêineres no deployment frontend
 
 ### Testar o livro de visitas
+
+
 
 #### Escalonar verticalmente o front-end da Web
 
