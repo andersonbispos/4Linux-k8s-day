@@ -5,7 +5,7 @@
 1. [Implantando o livro de visitas com Redis e PHP](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Implantando-o-livro-de-visitas-com-Redis-e-PHP "Implantando o livro de visitas com Redis e PHP")
    1. [Configurar o líder do Redis Redis](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurar-o-líder-do-Redis-Redis "Implantando o livro de visitas com Redis e PHP")
    1. [Configurar seguidores do Redis](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurar-seguidores-do-Redis "Configurar seguidores do Redis")
-   1. Configurar o front-end da Web do livro de visitas
+   1. [Configurar o front-end da Web do livro de visitas]()
    1. Testar o livro de visitas
    1. Criar uma configuração de HPA para o front-end WEB
 1. [Limpando o ambiente](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Limpando-o-Ambiente "Limpando o ambiente")
