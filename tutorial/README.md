@@ -119,6 +119,21 @@ gcloud container clusters get-credentials k8s-day-cluster
 
 Este comando configura `kubectl` para usar o cluster que você criou.
 
+### 3. Verifique os nós de processament disponíveis atualmente no cluster
+
+Para verificar quantos nós foram criados já na criação do cluster use o comando abaixo:
+
+```
+kubectl get nodes
+```
+
+Saída:
+
+```
+NAME                                             STATUS   ROLES    AGE   VERSION
+gk3-k8s-day-cluster-default-pool-5180d261-bnd1   Ready    <none>   33h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-d3b52fe3-xcdm         Ready    <none>   33h   v1.25.8-gke.1000
+```
 
 Em seguida, vamos seguir para a implantação do aplicativo no cluster.
 
@@ -183,7 +198,11 @@ Saída:
 
 O aplicativo do livro de visitas precisa se comunicar com o líder do Redis para gravar os dados. É possível criar um serviço para redirecionar o tráfego ao pod do líder do Redis.
 
-Um serviço é uma abstração do Kubernetes que define um conjunto lógico de pods e uma política para acessar os pods. O serviço é efetivamente um balanceador de carga nomeado que direciona o tráfego para um ou mais pods. Ao configurar um serviço, você descreve para quais pods direcionar com base nos rótulos dos pods.
+Um serviço é uma abstração do Kubernetes que define um conjunto lógico de pods e uma política para acessar os pods.
+
+O serviço é efetivamente um balanceador de carga nomeado que direciona o tráfego para um ou mais pods. Ao configurar um serviço, você descreve para quais pods direcionar com base nos rótulos dos pods.
+
+Tanto o líder do redis quanto os followers só precisam estar disponíveis internamente no cluster kubernetes. Eles precisam estar acessíveis apenas pelos pods do front end. Desse modo, serão criados serviços do tipo ClusterIP.
 
 O arquivo de manifesto tutorial/manifests/redis-leader-service.yaml que descreve um recurso de serviço para o líder do Redis:
 
@@ -230,16 +249,80 @@ kubernetes     ClusterIP   10.31.128.1     <none>        443/TCP    32h
 redis-leader   ClusterIP   10.31.130.223   <none>        6379/TCP   82s
 ```
 
-
 ### Configurar seguidores do Redis
 
+Embora o líder do Redis seja um único pod, é possível torná-lo altamente disponível e atender às demandas de tráfego adicionando algumas réplicas ou seguidores do Redis.
 
+Para criar a implantação do seguidor do Redis, execute:
+
+```
+kubectl apply -f tutorial/manifests/redis-follower-deployment.yaml
+```
+
+Consulte a lista de pods para verificar se as duas réplicas de seguidores do Redis estão em execução:
+
+```
+kubectl get pods
+```
+
+Saída:
+
+```
+NAME                              READY   STATUS    RESTARTS   AGE
+redis-follower-794f7bc756-f4lwb   1/1     Running   0          2m8s
+redis-follower-794f7bc756-tr7hh   1/1     Running   0          2m8s
+redis-leader-7ccdb7cc89-vmm88     1/1     Running   0          7h8m
+```
 
 #### Criar o serviço de seguidor do Redis
 
+O aplicativo de livro de visitas precisa se comunicar com os seguidores do Redis para ler os dados. Para que os seguidores do Redis possam ser descobertos, configure outro serviço executando:
+
+```
+kubectl apply -f tutorial/manifests/redis-follower-service.yaml
+```
+
+Valide que o serviço foi criado e está disponível:
+
+```
+kubectl get service
+```
+
+Saída:
+
+```
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+kubernetes       ClusterIP   10.31.128.1     <none>        443/TCP    33h
+redis-follower   ClusterIP   10.31.131.151   <none>        6379/TCP   89s
+redis-leader     ClusterIP   10.31.130.223   <none>        6379/TCP   62m
+```
+
 ### Configurar o front-end da Web do livro de visitas
 
+Agora que o armazenamento Redis do livro de visitas está configurado e funcionando, inicie os servidores da Web do livro. Assim como os seguidores do Redis, o front-end é implantado usando uma implantação do Kubernetes.
+
+O app de livro de visitas usa um front-end em PHP. Ele está configurado para se comunicar com os serviços de seguidor ou líder do Redis, dependendo se a solicitação é de leitura ou de gravação. O front-end apresenta uma interface JSON e veicula uma UX baseada em jQuery-Ajax.
+
+Para criar a implantação front-end da Web do livro de visitas, execute:
+
+```
+kubectl apply -f tutorial/manifests/frontend-deployment.yaml
+```
+
+Consulte a lista de pods em execução filtrando pelos `labels` que identificam o front-end da Web para verificar se 5 réplicas estão em execução:
+
+```
+kubectl get pods -l app=guestbook -l tier=frontend
+```
+
+Saída:
+
+
+
+
 #### Expor o front-end em um endereço IP externo
+
+
 
 ### Testar o livro de visitas
 
