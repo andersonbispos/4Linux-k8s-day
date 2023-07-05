@@ -8,7 +8,6 @@
    1. [Configurar o front-end da Web do livro de visitas](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Configurar-o-front-end-da-Web-do-livro-de-visitas "Configurar o front-end da Web do livro de visitas")
    1. [Testar o livro de visitas](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Testar-o-livro-de-visitas "Testar o livro de visitas")
    1. [Criar uma configuração de HPA para o front-end WEB](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Criar-uma-configuração-de-HPA-para-o-front-end-WEB "Criar uma configuração de HPA para o front-end WEB")
-1. [Limpando o ambiente](https://github.com/andersonbispos/4Linux-k8s-day/blob/main/tutorial/README.md#Limpando-o-Ambiente "Limpando o ambiente")
 
 ## Kubernetes com piloto automático na Google Cloud
 
@@ -486,53 +485,48 @@ spec:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 5
+        averageUtilization: 2
 ```
 
 ```
+kubectl apply -f tutorial/manifests/frontend-hpa.yaml
+```
 
 ```
+horizontalpodautoscaler.autoscaling/frontend-hpa created
+```
+
+```
+kubectl get hpa frontend-hpa
+```
+
+```
+NAME           REFERENCE             TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+frontend-hpa   Deployment/frontend   0%/5%     1         10        1          2m30s
+```
+
+Vamos aproveitar para verificar a quantidade de nós atualmente disponíveis no nosso cluster:
+
+```
+kubectl get nodes
+```
+
+Saída:
+
+```
+NAME                                             STATUS   ROLES    AGE     VERSION
+gk3-k8s-day-cluster-default-pool-5180d261-bnd1   Ready    <none>   2d11h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-d3b52fe3-xcdm         Ready    <none>   2d11h   v1.25.8-gke.1000
+```
+
+Após reduzirmos a quantidade de pods do frontend o AutoPilot automaticamente ajustou também a disponibilidade de nós para o cluster. 
 
 #### Testar o HPA
 
-## Limpando o ambiente
+Execute o comando abaixo para validar 
 
 ```
-kubectl create namespace 4linux
-```
-
-```
-kubectl create namespace 4linux
-```
-
-gcloud artifacts locations list
-
-
-gcloud artifacts repositories create repo-4linux \
-   --repository-format=docker \
-   --location=southamerica-east1 \
-   --description="Docker repository"
-
-
-git clone https://github.com/GoogleCloudPlatform/kubernetes-engine-samples
-
-cd kubernetes-engine-samples/hello-app
-
-
-gcloud services enable sourcerepo.googleapis.com
-
-gcloud services enable artifactregistry.googleapis.com
-
-gcloud services enable container.googleapis.com
-
-
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://frontend; done"
+```
 
-kubectl get hpa cpu --watch
-
-
-https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app#create_a_repository
-
-https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/gke-stateful-mysql
-
-https://github.com/GoogleCloudPlatform/kubernetes-engine-samples/tree/main/hello-app
+kubectl get hpa frontend-hpa --watch
