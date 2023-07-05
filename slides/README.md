@@ -50,7 +50,7 @@ Anderson Bispo
 
 ![bg right:40%](./images/perfil.png)
 
-#### 🇧🇷 Anderson Bispo
+#### 🇧🇷 
 
 * Servidor Público do TJBA
 * ConsTrutor 4Linux

@@ -523,10 +523,26 @@ Após reduzirmos a quantidade de pods do frontend o AutoPilot automaticamente aj
 
 #### Testar o HPA
 
-Execute o comando abaixo para validar 
+O comando abaixo vai criar um pod que vai gerar tráfego no nosso frontend de modo a podermos testar o funcionamento do HPA: 
 
 ```
 kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://frontend; done"
 ```
 
-kubectl get hpa frontend-hpa --watch
+Inicie uma nova aba de terminal e execute o comando abaixo para acompanhar o funcionamento do HPA:
+
+```
+kubectl get hpa frontend-hpa -w
+```
+
+Inicie uma nova aba de terminal e execute o comando abaixo para acompanhar o processo de criação de novos pods:
+
+```
+kubectl get pods -w
+```
+
+Inicie uma nova aba de terminal e execute o comando abaixo para acompanhar o processo de criação de novos nós para comportar os novos pods:
+
+```
+kubectl get nodes -w
+```
