@@ -363,9 +363,135 @@ Tente adicionar algumas entradas do livro de visitas digitando uma mensagem e cl
 
 #### Escalonar verticalmente o front-end da Web
 
-Verifique que alguns pods do frontend estão com o status `Pending`, ao verificar os eventos em um dos pods com status Pending é possível entender que o cluster não tem mais recursos disponíveis para iniciar os pods adicionais e desse modo o cluster iniciou automaticamente o scaling do cluster
+Suponha que o app do livro de visitas esteja em execução há algum tempo e de repente fique famoso. Você decide que seria uma boa ideia adicionar mais servidores Web ao seu front-end. Isso é fácil, visto que os servidores estão definidos como um serviço que usa um `controler` do tipo `deployment`.
+
+Aumente o número dos seus pods frontend para dez executando:
+
+```
+kubectl scale deployment frontend --replicas=10
+```
+
+Saída:
+
+```
+deployment.apps/frontend scaled
+```
+
+Em seguida confirme quantos pods estão em execução:
+
+```
+kubectl get pods
+```
+
+Saída
+
+```
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-74bd844ddb-59m62   0/1     Pending   0          14s
+frontend-74bd844ddb-8b74z   1/1     Running   0          21h
+frontend-74bd844ddb-8lgx4   0/1     Pending   0          14s
+frontend-74bd844ddb-ctg8t   0/1     Pending   0          14s
+frontend-74bd844ddb-ggr5h   1/1     Running   0          14s
+frontend-74bd844ddb-ks8sj   0/1     Pending   0          14s
+frontend-74bd844ddb-n54w4   0/1     Pending   0          14s
+frontend-74bd844ddb-n9llf   0/1     Pending   0          14s
+frontend-74bd844ddb-sphdr   0/1     Pending   0          14s
+frontend-74bd844ddb-v6jzv   0/1     Pending   0          14s
+```
+
+Verifique que alguns pods do frontend estão com o status `Pending` isso é porque não havia recursos de processamento (nós) disponíveis no cluster para comportar a necessidade adicional de carga, desse modo o AutoPilot dispara automaticamente o processo de Cluster AutoScaling.
+
+É possível verificar que novos nós estão sendo adicionados automáticamente ao cluster.
+
+```
+kubectl get nodes
+```
+
+Saída:
+
+```
+NAME                                             STATUS     ROLES    AGE    VERSION
+gk3-k8s-day-cluster-default-pool-5180d261-bnd1   Ready      <none>   2d8h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-6ef02323-6pcw         NotReady   <none>   11s    v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-d3b52fe3-xcdm         Ready      <none>   2d8h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-f0765916-q4rt         NotReady   <none>   8s     v1.25.8-gke.1000
+```
+
+Alguns minutos depois é possível validar que os nós já estão com o status Ready:
+
+```
+kubectl get nodes
+```
+
+Saída:
+
+```
+NAME                                             STATUS   ROLES    AGE    VERSION
+gk3-k8s-day-cluster-default-pool-5180d261-bnd1   Ready    <none>   2d8h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-6ef02323-6pcw         Ready    <none>   36m    v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-d3b52fe3-xcdm         Ready    <none>   2d8h   v1.25.8-gke.1000
+gk3-k8s-day-cluster-pool-1-f0765916-q4rt         Ready    <none>   36m    v1.25.8-gke.1000
+```
+
+e também todos os pods do frontend estão disponíveis:
+
+```
+kubectl get pods -l app=guestbook -l tier=frontend
+```
+
+Saída
+
+```
+NAME                        READY   STATUS    RESTARTS   AGE
+frontend-74bd844ddb-59m62   1/1     Running   0          37m
+frontend-74bd844ddb-8b74z   1/1     Running   0          22h
+frontend-74bd844ddb-8lgx4   1/1     Running   0          37m
+frontend-74bd844ddb-ctg8t   1/1     Running   0          37m
+frontend-74bd844ddb-ggr5h   1/1     Running   0          37m
+frontend-74bd844ddb-ks8sj   1/1     Running   0          37m
+frontend-74bd844ddb-n54w4   1/1     Running   0          37m
+frontend-74bd844ddb-n9llf   1/1     Running   0          37m
+frontend-74bd844ddb-sphdr   1/1     Running   0          37m
+frontend-74bd844ddb-v6jzv   1/1     Running   0          37m
+
+```
 
 ### Criar uma configuração de HPA para o front-end WEB
+
+O Escalonamento automático horizontal de pods (HPA) muda a forma da carga de trabalho do Kubernetes, aumentando ou diminuindo automaticamente o número de pods em resposta ao consumo de memória ou CPU da carga de trabalho ou às métricas personalizadas informadas no Kubernetes ou às métricas externas fora do cluster.
+
+Os clusters do Autopilot escalonam automaticamente o número de nós no cluster com base nas mudanças no número de pods.
+
+```
+kubectl scale deployment frontend --replicas=1
+```
+
+
+
+```
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 5
+```
+
+```
+
+```
 
 #### Testar o HPA
 
